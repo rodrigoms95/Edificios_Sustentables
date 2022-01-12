@@ -1,0 +1,238 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{upgreek}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{hyperref}
+%\usepackage[
+%    backend=biber,
+%    style=apa,
+%  ]{biblatex}
+\usepackage{csquotes}
+%\addbibresource{bibresource}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Edificios Sustentables}
+\chead{Transferencia de calor}
+\rhead{Rodrigo Muñoz Sánchez}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\renewcommand{\theenumiii}{\roman{enumiii}}
+
+\title{Ejercicios de transferencia de calor}
+\author{Rodrigo Muñoz}
+\date{Enero 2022}
+
+\graphicspath{Images/}
+
+\begin{document}
+
+\maketitle
+
+\section{Conducción - Muro simple}
+
+Muro: concreto de 20 cm, 3 m\textsuperscript{2}
+Temperatura: exterior 30\degree C, interior 20\degree C
+
+Obtener la densidad de flujo de calor, el calor transmitido durante un periodo de 2 h, y graficar el perfil térmico.
+
+\subsection{Paso 1: esquema general}
+
+Positivo en este sentido.
+
+\subsection{Paso 2: esquema de resistencias térmicas}
+
+Se preserva el sentido.
+
+\subsection{Paso 3: calcular las resistencias térmicas}
+
+\[ e = 10 \left[ cm \right] = 0.2 \left[ m \right] \]
+
+Conductividad térmica del concreto
+
+\[ \lambda = 1.74 \left[ \sfrac{ W }{ m K } \right] \]
+
+\[ R = \frac{ e }{ \lambda } = \frac{ 0.2 }{ 1.74 } = 0.1149 \left[ \sfrac{ m ^ 2 K }{ W } \right] \]
+
+\subsection{Paso 4: calcular el flujo}
+
+La temperatura se debe trabajar en Kelvins para que las unidades coincidan. Solo cuando se trabaja con diferencias de temperatura se pueden utilizar grados centígrados, pero al hacer despejes esto puede dar lugar a errores si no se tiene cuidado.
+
+\[ \Delta T = T_e - T_i = \left( 30 + 273.15 \right) - \left( 20 + 273.15 \right) = 10 \left[ K \right] \]
+
+\[ \varphi = \frac{ \Delta T }{ R } = \frac{ 10 }{ 0.1149 } = 87.03 \left[ \sfrac{ W }{ m ^ 2 } \right] \]
+
+\[ \boxed{ \varphi = 87.03 \left[ \sfrac{ W }{ m ^ 2 } \right] } \]
+
+El flujo va en el sentido escogido.
+
+\[ Q = \varphi A \Delta T \]
+
+$ \varphi $ es la densidad de flujo térmico. $ \Phi = \varphi A $ es el flujo térmico.
+
+Análisis dimensional
+
+\[ \left[ \frac{ W }{ m ^ 2 } \right] \left[ m ^ 2 \right] \left[ s \right] = \left[ W s \right] = \left[ J \right] \]
+
+\[ Q = 87.03 \cdot 3 \cdot \left( 2 \cdot 3600 \right) = 1.88 \times 10 ^ 6 J  \]
+
+Donde las 2 horas se convirtieron a segundos.
+
+\[ Q = 1.88 MJ \text{ en } \Delta t = 2 \left[ h \right] \]
+
+\subsection{Paso 5: perfil de temperatura}
+
+El perfil de temperatura es una recta con pendiente $ \varphi R $ entre el inicio y el fin del muro. En el interior y el exterior es una recta horizontal de temperatura constante.
+
+\section{Conducción - Muro compuesto}
+
+Muro: concreto 20 cm
+Aplanado: yeso 2 cm en exterior e interior
+Temperatura: exterior 30\degree C, interior 20\degree C
+
+Calcular la densidad de flujo térmico y graficar el perfil térmico.
+
+\subsection{Paso 1: esquema general}
+
+\subsection{Paso 2: esquema de resistencias térmicas}
+
+En conducción, el flujo será constante a través de todas las capas.
+
+Resistencia equivalente
+
+El flujo de la resistencia equivalente es el mismo que en la resistencia completa.
+
+\subsection{Paso 3: calcular las resistencias térmicas}
+
+Resistencias individuales
+
+Capas 1 y 3: aplanado de yeso
+Capa 2: concreto
+
+Si hay una capa de pintura, ésta suele ser muy delgada, por lo que no ofrece resistencia térmica alguna y no se considera.
+
+\[ e_1 = e_3 = 0.03 \left[ m \right] \]
+
+Conductividad del yeso
+
+\[ \lambda _1 = \lambda _3 = 0.372 \left[ \sfrac{ W }{ m K } \right] \]
+
+\[ R_1 = R_3 = 0.0538 \left[ \sfrac{ m ^ 2 K }{ W } \right] \]
+
+\[ R_2 = 0.1149 \left[ \sfrac{ m ^ 2 K }{ W } \right] \]
+
+Resistencia equivalente
+
+\[ R_{ eq } = \sum{ R_i } = R_1 + R_2 + R_3 = 0.2225 \left[ \sfrac{ m ^ 2 K }{ W } \right] \]
+
+\subsection{Paso 4: calcular el flujo}
+
+\[ \varphi = \frac{ \Delta T }{ R_{ eq } } \]
+
+\[ \boxed{ \varphi = 44.94 \left[ \sfrac{ W }{ m ^ 2 } \right] } \]
+
+\subsection{Paso 5: perfil de temperatura}
+
+Trabajando de la capa con mayor temperatura a la de menor temperatura:
+
+\[ T_i = T_{ i - 1 } - \varphi R_i \]
+
+\[ T_1 = T_{ ext } - \varphi R_1 = 27.6 \left[ \degree C \right] \]
+
+\[ T_2 = T_{ 1 } - \varphi R_2 = 22.4 \left[ \degree C \right] \]
+
+Finalmente, para comprobar:
+
+\[ T_{ int } = T_{ 2 } - \varphi R_3 = 20 \left[ \degree C \right] \]
+
+La variación de temperatura en cada capa es una recta con pendiente $ \varphi R_i $
+
+El dibujo no está a escala.
+
+\section{Muro con convección}
+
+\subsection{Paso 1: esquema general}
+
+\subsection{Paso 2: esquema de resistencias térmicas}
+
+Puede haber varias capas de conducción, donde la resistencia intermedia por conducción se puede sustituir por varias resistencias, una por cada capa, o por una resistencia para toda la conducción, con valor de $ \sum{ \lambda ^{ -1 } _i } e_i $. En caso de representar todas las capas por separada, cada capa tendría una resistencia asociada y en la interfaz entre capa habría un nodo, con una temperatura $ T_i $ para cada interfaz. Representar todas las capas es importante para graficar el perfil de temperatura.
+
+El flujo térmico es el mismo para todas las capas de conducción y de convección. Las capas de conducción y convección van en serie y no se puede considerar por separado la convección y la conducción.
+
+Resistencia equivalente.
+
+\subsection{Paso 3: calcuular las resistencias térmicas}
+
+Por conducción
+
+Cuando hay un muro compuesto
+
+\[ R_{ muro } = \sum{ \lambda ^{ -1 } _i e_i } \]
+
+Por convección
+
+En el exterior:
+
+\[ R_{ s \ ext } h_{ ext } ^{ -1 } \]
+
+No olvidar el exponente negativo del coeficiente de convección.
+
+Sin viento:
+
+\[ h_{ ext } = 0.13 \left[ \sfrac{ W }{ m ^ 2 K } \right] \]
+
+Con viento:
+
+\[ h_{ ext } = f \left( v \right) \]
+
+En el interior:
+
+\[ R_{ s \ int } h_{ int } ^{ -1 } \]
+
+Usualmente no hay viento en el interior y por tanto sol hay un valor estándar de coeficiente de convección:
+
+\[ h_{ int } = 0.04 \left[ \sfrac{ W }{ m ^ 2 K } \right] \]
+
+Resistencia equivalente
+
+\[ R_{ eq } = \sum{ R_i } = R_{ s \ ext } + R_{ muro } + R_{ s \ int } \]
+
+\subsection{Paso 4: calcular el flujo}
+
+\[ \varphi = \frac{ \Delta T }{ R_{ eq } } \]
+
+\subsection{Paso 5: perfil de temperatura}
+
+\[ T_i = T_{ i - 1 } - \varphi R_i \]
+
+donde $ T_i = T_{ ext }, T_{ s \ ext }, T_1, T_2, \ldots , T_n, T_{s \ int }, T_{ int } $
+
+El perfil por con conducción sigue siendo una recta, pero el perfil por convección es una curva asíntotica desde la temperatura superficial del muro hacia la temperatura ya sea del interior o del exterior.
+
+\subsection*{ Problema }
+
+Se deja como ejericicio al lector calcular la densidad de flujo térmico y graficar el perfil de temperaturas para el siguiente caso:
+
+Muro: tabique, con resistencia térmica de $ \lambda = 0.872 \left[ \sfrac{ W }{ m K } \right] $ y espesor de $ e = 7 \left[ cm \right]$
+
+Temperatura exterior de 10 \degree C e interior de 20 \degree C.
+
+\[ \]
+
+\[ \]
+
+\[ \]
+
+%\nocite{*}
+%\printbibliography
+
+\end{document}
