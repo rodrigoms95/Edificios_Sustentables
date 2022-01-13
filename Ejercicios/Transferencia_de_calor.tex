@@ -182,7 +182,7 @@ Por convección
 
 En el exterior:
 
-\[ R_{ s \ ext } h_{ ext } ^{ -1 } \]
+\[ R_{ s \, ext } h_{ ext } ^{ -1 } \]
 
 No olvidar el exponente negativo del coeficiente de convección.
 
@@ -196,7 +196,7 @@ Con viento:
 
 En el interior:
 
-\[ R_{ s \ int } h_{ int } ^{ -1 } \]
+\[ R_{ s \, int } h_{ int } ^{ -1 } \]
 
 Usualmente no hay viento en el interior y por tanto sol hay un valor estándar de coeficiente de convección:
 
@@ -204,7 +204,7 @@ Usualmente no hay viento en el interior y por tanto sol hay un valor estándar d
 
 Resistencia equivalente
 
-\[ R_{ eq } = \sum{ R_i } = R_{ s \ ext } + R_{ muro } + R_{ s \ int } \]
+\[ R_{ eq } = \sum{ R_i } = R_{ s \, ext } + R_{ muro } + R_{ s \, int } \]
 
 \subsection{Paso 4: calcular el flujo}
 
@@ -214,7 +214,7 @@ Resistencia equivalente
 
 \[ T_i = T_{ i - 1 } - \varphi R_i \]
 
-donde $ T_i = T_{ ext }, T_{ s \ ext }, T_1, T_2, \ldots , T_n, T_{s \ int }, T_{ int } $
+donde $ T_i = T_{ ext }, T_{ s \, ext }, T_1, T_2, \ldots , T_n, T_{s \, int }, T_{ int } $
 
 El perfil por con conducción sigue siendo una recta, pero el perfil por convección es una curva asíntotica desde la temperatura superficial del muro hacia la temperatura ya sea del interior o del exterior.
 
@@ -226,7 +226,252 @@ Muro: tabique, con resistencia térmica de $ \lambda = 0.872 \left[ \sfrac{ W }{
 
 Temperatura exterior de 10 \degree C e interior de 20 \degree C.
 
-\[ \]
+\section{Radiación incidente solar en una ventana}
+
+La radiación solar es radiación de onda corta.
+
+\subsection{Esquema general}
+
+$ \varphi _\tau $ corresponde a la radiación transmitida a través de la ventana hacia el interior del edificio, mientras que
+
+\[ \varphi _\alpha = \alpha \varphi _\theta \]
+
+corresponde a la porción absorbida por la ventana.
+
+\subsection{Análisis de la radiación solar}
+
+Para poder estudiar la radiación solar en la ventana, es necesario proyectar el vector de la radiación solar directa hacia el vector normal de la ventana. $ \alpha $ será el ángulo horizontal con respecto a la normal de la ventana, mientras que $ \beta $ el ángulo vertical. Es importante notar que el vector de la radiación solar se suele definir en función del acimut y la altura solar, por lo que hay que emplear la trigonometría para convertir a los ángulos definidos en función de la ventana.
+
+\[ \varphi _\theta = \varphi _s \cos \alpha \cos \beta \]
+
+Esta fórmula aplica para un muro vertical y cambia en el caso de un muro horizontal.
+
+\subsection{Esquema de resistencias térmicas}
+
+El esquema se puede aplicar fácilmente para un muro opaco con varias capas si se sustituye la resistencia del vidrio, $ R_v $, por una resistencia por conducción para el muro, $ R_{ muro } = \sum{ \lambda ^2 _{i} e_i } $, en cuyo caso, la radiación transmitida sería 0:
+
+\[ \tau \varphi _\theta = 0 \]
+
+Como ahora hay un nodo donde confluye la radiación solar, a lo largo de la ventana ahora habrá dos flujos, y habla que hacer el balance entre la entrada y salida de estos flujo sobre el nodo en cuestión. El flujo que normalmente buscamos despejar es $ \varphi _{ int } $, ya que es la densidad de flujo térmico que entra a la habitación, y por tanto corresponderá a las cargas sensibles a través de la pared en un análisis de ventilación mecánica y en un balance de calor.
+
+El sentido de flujo sigue siendo arbitrario, pero siempre tiene que ser de mayor a menor temperatura, por lo que en este caso hemos supuesto:
+
+\[ \begin{aligned} 
+    & T_{ s \, ext } > T_{ ext } \\
+    & T_{ s \, ext } > T_{ s int } > T_{ int }
+\end{aligned} \]
+
+\subsection{Ecuaciones de flujo}
+
+\begin{equation}\label{eq:1}
+    \varphi _{ ext } = \frac{ T_{ s \, ext } - T_{ ext } }{ R_{ ext } }
+\end{equation}
+
+\begin{equation}\label{eq:2}
+    \varphi _{ int } = \frac{ T_{ s \, ext } - T_{ ext } }{ R_v + R_{ int } }
+\end{equation}
+
+%\subsection{Balance de Energía en $ T_{ s \, ext } $}
+
+\subsection{Balance de Energía en}
+
+\begin{equation}\label{eq:3}
+    \alpha \varphi _\theta = \varphi _{ ext } + \varphi _{ int }
+\end{equation}
+
+\subsection{Deducción de fórmula general}
+
+Ahora, despejamos $ T_{ s \, ext } $ de \ref{eq:1} y \ref{eq:2}
+
+\begin{equation} \label{eq:4}
+    T_{ s \, ext} = \varphi _{ ext } R_{ ext } + T_{ ext }
+\end{equation}
+
+\begin{equation} \label{eq:5}
+    T_{ s \, ext } = \varphi \left( R_v + R_{ int } \right) + T_{ int }
+\end{equation}
+
+Igualamos \ref{eq:4} y \ref{eq:5} y despejamos $ \varphi _{ ext } $
+
+\[ \varphi _{ ext } + R_{ ext } + T_{ ext } = \varphi \left( R_v + R_{ int } \right) + T_{ int } \]
+
+\begin{equation}\label{eq:6}
+    \varphi _{ ext } = \frac{ \varphi _{ int } \left( R_v + R_{ int } \right) + T_{ int } - T_{ ext } }{ R_{ ext } }
+\end{equation}
+
+Sustituimos \ref{eq:6} en \ref{eq:3} y despejamos $ \varphi _{ int } $
+
+\[ \alpha \varphi _\theta = \frac{ \varphi _{ int } \left( R_v + R_{ int } \right) + T_{ int } - T_{ ext } }{ R_{ ext } } + \varphi_{ int } \]
+
+\[ \alpha \varphi _ \theta R_{ ext } + T_{ ext } - T_{ int } = \varphi _{ int } + \left( R_v + R_{ int } + R_{ ext } \right) \]
+
+\[  \boxed{ \varphi _{ int } = \frac{ T_{ ext } - T_{ int } + \alpha \varphi _\theta R_{ ext } }{ R_v + R_{ int } + R_{ ext } } } \]
+
+Esta fórmula nos permite calcular $ \varphi _{ int } $ sin tener que calcular ni $ T_{ s \, ext }  $ ni $ T_{ s \, int } $.
+
+\subsection*{Problema}
+
+Calcular el flujo térmico y el perfil de temperatura asociado a una ventana con vidrio simple orientada hacia el este con las siguientes características:
+
+\[ e = \sfrac{1}{4}" \]
+
+\[ \lambda = 0.93 \left[ \sfrac{ W }{ m K } \right] \]
+
+\[ T_{ ext } = 10 \left[ \degree C \right] \]
+
+\[ T_{ ext } = 20 \left[ \degree C \right] \]
+
+La radiación solar tiene un ángulo de 30\degree con respecto a la horizontal de 45\degree con respecto al sur, es decir, en dirección sureste. La intensida de la radiación solar es de:
+
+\[ \varphi _s = 500 \left[ \sfrac{ W }{ m ^2 } \right] \]
+
+\subsection{Ventanas dobles}
+
+Las ventanas dobles tienen dos capas de vidrio con una capa de aire entre las dos, que se encuentra sellado contra el exterior, y a veces incluso está parcialmente evacuado o está lleno de un gas inerte con menor conductividad térmica que el aire. Como no hay movimiento de esta capa de aire, la capa interna solo transmitirá calor por conducción. En el exterior e interior sigue habiendo convección.
+
+La radiación solar incide en el primer vidrio, donde una parte es absorbida y la otra transmitida. La porción transmitida incide en el segundo vidrio, donde también hay una porción absorbida. Debido a esto, ahora habrpa dos nodos en la resistencia térmica donde haya una confluencia de varios flujos, por lo que tendremos 2 ecuaciones de balance y tres flujos diferentes a lo largo de la ventana. Se encesita armar un sistema de ecuaciones de 5 ecuaciones y 5 incógnitas y despejar $ \varphi _{ int } $.
+
+
+\section{Balance de calor}
+
+Se tiene un paralelepípedo de $ 30 \times 30 \times 60 \left[ cm \right] $. Las paredes son de acero pintado de blanco con un espesor de $ e = 1 \left[ cm \right] $. La conductividad del acero es de $ \lambda = 52.3 \left[ \sfrac{ W }{ m K } \right] $. Todas las paredes están selladas en las orillas y esquinas con un chaflán de soldadura, por lo que se puede suponer que no hay infiltraciones y que los puentes térmicos son despreciables. Una de las caras de $ 30 \times 30 \left[ cm \right] $ recibe una radiación directa normal de $ \varphi _s = 100 \left[ \sfrac{ W }{ m ^2 } \right] $. La temperatura exterior es de 10 \degree C, hay un fuente interna de calor con un flujo de $ \Phi _{ fuente } = 100 \left[ W \right] $.
+
+En este no hay que olvidar la diferencia entre la densidad de flujo térmico, que representa una potencia por unidad de área y se representa con la letra griega \emph{phi} minúscuala, $ \varphi \left[ \sfrac{ W }{ m ^2 } \right] $, y el flujo térmico, o de calor, que se representa con la letra griega \emph{phi} mayúscula y es la potencia total que atraviesa una pared, $ \Phi = \varphi A \left[ W \right] $
+
+Se pide calcular la temperatura en el interior del paralelepípedo.
+
+\subsection{Densidad de flujo a través de las paredes}
+
+Todas las paredes tienen convección natural en interior y exterior más conducción.
+
+\[ e_p = e_1 = e_2 = e_3 = e_4 = e_5 = e_6 = 0.01 \left[ m \right] \]
+
+\[ \lambda _p = \lambda _1 = \lambda _2 = \lambda _3 = \lambda _4 = \lambda _5 = \lambda _6 = 52.3 \left[ \sfrac{ W }{ m K } \right] \]
+
+\[ R_{ p \, 1 } = R_{ p \, 2 } = R_{ p \, 3 } = R_{ p \, 4 } = R_{ p \, 5 } = R_{ p \, 6 } = e_p \lambda _p = 1.912 \times 10 ^{ -4 } \left[ \sfrac{ m ^2 K }{ W } \right] \]
+
+Para la pared de $ 30 \times 30 \left[ cm \right] $ sin radiación (pared 1) y las paredes de $ 30 \times 60 \left[ cm \right] $: 
+
+Hemos puesto el sentido de flujo de tal manera que será positivo de afuera hacia adentro.
+
+\[ R_{ s \, int \, i } = 0.04 \left[ \sfrac{ W }{ m ^2 K } \right] \]
+
+Para la resistencia superficial exterior de las paredes horizontales, se toma en cuenta que el flujo es horizontal.
+
+\[ R_{ s \, ext \, 1 } = R_{ s \, ext \, 3 } = R_{ s \, ext \, 4 } = R_{ s \, ext \, 6 } = 0.13 \left[ \sfrac{ W }{ m ^2 K } \right] \]
+
+Para las paredes verticales, las resistencia estándar es diferete si el flujo es ascendente o si es descendente. Para la pared de arriba escogemos flujo ascendente y para la de abajo flujo descendente, lo que implica que estamos suponiendo que el flujo irá desde el interior del paralelepípedo hacia el exterior.
+
+\[ R_{ s \, ext \, 2 } = 0.1 \left[ \sfrac{ W }{ m^2 K } \right] \]
+
+\[ R_{ s \, ext \, 3 } = 0.17 \left[ \sfrac{ W }{ m^2 K } \right] \]
+
+En caso de que la suposición que hemos hecho sea incorrecta, habrá que cambiar los valores de estas resistencias.
+
+Ahora podemos calcular el flujo en cada pared.
+
+Aunque tengan diferentes dimensiones, la densidad de flujo para todas las paredes será el mismo, ya que no depende del área de la pared.
+
+\[ \varphi _{ int \, 1 } = \varphi _{ int \, 3 } = \varphi _{ \int 4 } = \frac{ T_{ a \, ext } - T_{ a \, int } }{ R_{ eq \, 1 } } = \frac{ 10 - T_{ a \, int } }{ 0.1702 } \]
+
+donde
+
+\[ R_{ eq \, 1 } = R_{ eq \, 3 } = R_{ eq \, 4 } = R_{ eq \, 6 } = R_{ p \, 1 } + R_{ s \, int \, 1 } + R_{ s \, ext \, 1 } = 0.1702 \left[ \sfrac{ W }{ m ^2 K } \right] \]
+
+\[ \varphi _2 = \frac{ 10 - T_{ a \, int } }{ 0.1402 } \]
+
+\[ \varphi _3 = \frac{ 10 - T_{ a \, int } }{ 0.2102 } \]
+
+para la pared de $ 30 \times 30 \left[ cm \right] $ con radiación (pared 6):
+
+\[ \varphi _6 = \frac{ T_{ a \, ext } - T_{ a \, int } }{ R_{ eq \, 2 } } = \frac{ 15.2 - T_{ ai } }{ 0.1702 } \]
+
+\subsection{Balance de calor}
+
+Sabemos que hay un estado de flujo estacionario, por lo que
+
+\[  \sum{ \Phi _i } = 0 \longrightarrow \Phi _{ total } = 0 \]
+
+Además, no hay puentes térmicos, por lo que:
+
+\[ \Phi _{ pt } = 0 \]
+
+donde
+
+\[ \Phi _{ pt } = \sum{ \left( L_i \psi _i + \psi _{ pi } \right) }  \]
+
+Como no hay ventliación ni infiltraciones:
+
+\[ \Phi _v = 0 \]
+
+Tampoco hay radiación que entre directamente hacia el interior:
+
+\[ \Phi _{ \tau \, s } = 0 \]
+
+donde
+
+\[ \Phi _{ \tau \, s } = \sum{ A_i \tau _i \varphi _{ \theta \, i } } \]
+
+y se da principalmente en ventanas.
+
+El flujo total es:
+
+\[ \Phi _{ total } = \Phi _{ pared } + \Phi _{ fuente } = 0 \]
+
+donde
+
+\[ \Phi _{ pared } = \sum{ A_i \, \varphi _{ int \, i } } = A_1 \, \varphi _{ int \, 1 } + A_2 \, \varphi _{ int \, 2 } + 2 A_1 \, \varphi _{ int \, 3 } + A_5 \, \varphi _{ int \, 5 } + A_6 \, \varphi _{ int \, 6 } + \]
+
+\[ \Phi _{ pared } = 9 \left( \frac{ 10 - T_{ a \, int } }{ 0.1702 } \right) + 18 \left( \frac{ 10 - T_{ a \, int } }{ 0.1402 } \right) + 2 \cdot 18 \left( \frac{ 10 - T_{ a \, int } }{ 0.2102 } \right) + 9 \left( \frac{ 15.2 - T_{ a \, int } }{ 0.1702 } \right) \]
+
+Haciendo álgebra, se obtiene:
+
+\[ \Phi _{ pared } = 5,588 - 531 T_{ a \, int } \]
+
+Sustituyendo en el balance de calor:
+
+\[ \Phi _{ pared } + \Phi _{ fuente } = 0 \]
+
+\[ \Phi _{ pared } + \Phi _{ fuente } = 5,588 -531 T_{ a \, int } + 100 \]
+
+Despejamos la temperatura interior: 
+
+\[ 5,688 - 531 T_{ a \, int } = 0 \]
+
+\[ \boxed{
+    T_{ a \, int } = 10.52 \left[ \degree C \right]
+} \]
+
+El flujo va de adentro hacia afuera, por lo que la hipótesis de convección en las paredes horizontales fue cierta.
+
+\subsection*{Métodos numéricos}
+
+A veces no será fácil despejar $ T_{ a \, int} $, por lo que será necesario resolver mediante un método número. Una forma sencilla de atacar este problema es mediante el uso de la función OBJETIVO de Excel.
+
+Tenemos el siguiente sistema de ecuaciones:
+
+\[ T_{ a \, ext } \longrightarrow \text{valor conocido} \]
+
+\[ T_{ a \, int } \longrightarrow \text{incógnita} \]
+
+\[ \sum{ \Phi } = 0 \]
+
+\[ \sum{ \Phi } = \Phi _{ fuente } + \Phi _{ pared } \]
+
+\[ \Phi _{ fuente } \longrightarrow \text{valor conocido} \]
+
+\[ \Phi _{ pared } = f \left( T_{ a \, ext }, \, T_{ a \, int } \right) \]
+
+Las celdas de Excel se plantean de la siguiente manera:
+
+
+\[ \begin{aligned}
+    & \mathrm{A} 1 \rightarrow T_{ a \, ext } \longrightarrow \text{fijo} \\
+    & \mathrm{A} 2 \rightarrow T_{ a \, int } \longrightarrow \text{establecer un valor inicial, por ejemplo 0 \degree C} \\
+    & \mathrm{A} 3 \rightarrow \varphi _{ pared \, 1 } = f \left( T_{ a \, ext }, \, T_{ a \, int } \right) \longrightarrow  \left( \$ \mathrm{A} \$ 1, \, \$ \mathrm{A} \$ 2 \right) \\
+    & \mathrm{A} 4 \rightarrow \varphi _{ pared \, 1 } = f \left( T_{ a \, ext }, \, T_{ a \, int } \right) \longrightarrow  \left( \$ \mathrm{A} \$ 1, \, \$ \mathrm{A} \$ 2 \right) \\
+    & \vdots
+\end{aligned} \]
 
 \[ \]
 
