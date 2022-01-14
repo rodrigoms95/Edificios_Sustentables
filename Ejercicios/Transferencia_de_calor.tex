@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 \usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
@@ -160,9 +160,9 @@ El dibujo no está a escala.
 
 \section{Muro con convección}
 
-\subsection{Paso 1: esquema general}
+\subsection{Esquema general}
 
-\subsection{Paso 2: esquema de resistencias térmicas}
+\subsection{Esquema de resistencias térmicas}
 
 Puede haber varias capas de conducción, donde la resistencia intermedia por conducción se puede sustituir por varias resistencias, una por cada capa, o por una resistencia para toda la conducción, con valor de $ \sum{ \lambda ^{ -1 } _i } e_i $. En caso de representar todas las capas por separada, cada capa tendría una resistencia asociada y en la interfaz entre capa habría un nodo, con una temperatura $ T_i $ para cada interfaz. Representar todas las capas es importante para graficar el perfil de temperatura.
 
@@ -170,15 +170,15 @@ El flujo térmico es el mismo para todas las capas de conducción y de convecci�
 
 Resistencia equivalente.
 
-\subsection{Paso 3: calcuular las resistencias térmicas}
+\subsection{Calcular las resistencias térmicas}
 
-Por conducción
+\textbf{Por conducción}
 
 Cuando hay un muro compuesto
 
 \[ R_{ muro } = \sum{ \lambda ^{ -1 } _i e_i } \]
 
-Por convección
+\textbf{Por convección}
 
 En el exterior:
 
@@ -188,7 +188,7 @@ No olvidar el exponente negativo del coeficiente de convección.
 
 Sin viento:
 
-\[ h_{ ext } = 0.13 \left[ \sfrac{ W }{ m ^ 2 K } \right] \]
+\[ R_{ s \, ext } = 0.13 \left[ \sfrac{ W }{ m ^ 2 K } \right] \]
 
 Con viento:
 
@@ -200,9 +200,9 @@ En el interior:
 
 Usualmente no hay viento en el interior y por tanto sol hay un valor estándar de coeficiente de convección:
 
-\[ h_{ int } = 0.04 \left[ \sfrac{ W }{ m ^ 2 K } \right] \]
+\[ R_{ s\, int } = 0.04 \left[ \sfrac{ W }{ m ^ 2 K } \right] \]
 
-Resistencia equivalente
+\textbf{Resistencia equivalente}
 
 \[ R_{ eq } = \sum{ R_i } = R_{ s \, ext } + R_{ muro } + R_{ s \, int } \]
 
@@ -444,7 +444,7 @@ El flujo va de adentro hacia afuera, por lo que la hipótesis de convección en 
 
 \subsection*{Métodos numéricos}
 
-A veces no será fácil despejar $ T_{ a \, int} $, por lo que será necesario resolver mediante un método número. Una forma sencilla de atacar este problema es mediante el uso de la función OBJETIVO de Excel.
+En ocasiones no será fácil despejar $ T_{ a \, int} $, por lo que será necesario resolver mediante un método número. Una forma sencilla de atacar este problema es mediante el uso de la función OBJETIVO de Excel.
 
 Tenemos el siguiente sistema de ecuaciones:
 
@@ -454,26 +454,261 @@ Tenemos el siguiente sistema de ecuaciones:
 
 \[ \sum{ \Phi } = 0 \]
 
+sin olvidar que:
+
+\[ \Phi \left[ W \right] = \varphi A \]
+
 \[ \sum{ \Phi } = \Phi _{ fuente } + \Phi _{ pared } \]
 
 \[ \Phi _{ fuente } \longrightarrow \text{valor conocido} \]
 
 \[ \Phi _{ pared } = f \left( T_{ a \, ext }, \, T_{ a \, int } \right) \]
 
-Las celdas de Excel se plantean de la siguiente manera:
+Incluyendo ventanas, puertas, etc.
 
+Las celdas de Excel se plantean de la siguiente manera:
 
 \[ \begin{aligned}
     & \mathrm{A} 1 \rightarrow T_{ a \, ext } \longrightarrow \text{fijo} \\
     & \mathrm{A} 2 \rightarrow T_{ a \, int } \longrightarrow \text{establecer un valor inicial, por ejemplo 0 \degree C} \\
     & \mathrm{A} 3 \rightarrow \varphi _{ pared \, 1 } = f \left( T_{ a \, ext }, \, T_{ a \, int } \right) \longrightarrow  \left( \$ \mathrm{A} \$ 1, \, \$ \mathrm{A} \$ 2 \right) \\
     & \mathrm{A} 4 \rightarrow \varphi _{ pared \, 1 } = f \left( T_{ a \, ext }, \, T_{ a \, int } \right) \longrightarrow  \left( \$ \mathrm{A} \$ 1, \, \$ \mathrm{A} \$ 2 \right) \\
-    & \vdots
+    & \vdots \\
+    & \mathrm{A} 8 \rightarrow \varphi _{ pared \, 6 } = f \left( T_{ a \, ext }, \, T_{ a \, int } \right) \longrightarrow  \left( \$ \mathrm{A} \$ 1, \, \$ \mathrm{A} \$ 2 \right) \\
+    & \vdots \\
+    & \mathrm{A} 9 \rightarrow \Phi _{ fuente } \longrightarrow \text{fijo} \\
+    & \\
+    & \mathrm{A} 9 \;\;  \rightarrow A_1 \longrightarrow \text{fijo} \\
+    & \mathrm{A} 10   \rightarrow A_2 \longrightarrow \text{fijo} \\
+    & \mathrm{A} 11   \rightarrow A_3 \longrightarrow \text{fijo} \\
+    & \vdots \\
+    & \mathrm{A} 9 \rightarrow A_6 \longrightarrow \text{fijo} \\
+    & \\
+    &\mathrm{A} 10 \rightarrow \sum{ \Phi } = \Phi _{ fuente } + \Phi _{ pared } \longrightarrow f \left( \$ \mathrm{A} \$ 1, \, \ldots , \, \$ \mathrm{A} \$ 16 \right)
 \end{aligned} \]
 
-\[ \]
+Como $ \mathrm{A} 1, \, \mathrm{A} 9, \, \ldots, \, \mathrm{A} 15 $ son valores fijos, y $ \mathrm{A} 3, \, \mathrm{A} 4, \, \mathrm{A} 8 $ son función únicamente de $ \mathrm{A} 2 $, entonces $ \mathrm{A} 16 $ es únicamente función de $ \mathrm{A} 2 $, por lo que en la función OBJETIVO buscaremos que la celda $ \mathrm{A} 6 $ sea 0, cambiando el valor de la celda $ \mathrm{A} 2 $, que es igual a $ T_{ a \, int } $ y es el resultado que buscamos.
 
-\[ \]
+\section{Radiación emitida por un muro}
+
+Un muro se comporta casi como un cuerpo negro, y como todos los objetos, emite radiación térmica en forma de onda larga.
+
+\subsection{Análisis de la radiación}
+
+De la ley de Stefan-Boltzmann:
+
+\[ \Phi _{ ij } = A_{ ij } F_{ ij } \sigma \varepsilon _i \varepsilon _j \left( T_i^4 - T_j^4 \right) \]
+
+Es muy importante trabajar con la temperatura en Kelvins, ya que no se trata de una simple diferencia de temperaturas, por que éstas están elevadas a la cuarta potencia.
+
+Recordando la relación entre el flujo y la densdidad de flujo
+
+\[ \Phi = \varphi A \]
+
+Llegamos a la fórmula de la emisión en onda larga.
+
+\[ \varphi _e = F_o \sigma \varepsilon _{ s \, ext } \varepsilon _o \left( T_{ s\, ext }^4 - T_o^4 \right) \]
+
+Donde el subíndice o indica el objeto contra el que la superficie de nuestro muro va a estar intercambiando radiación de onda larga.
+
+El factor de forma entre la superficie y el objeto, $ F_o $ puede ser 1, entre una losa y el cielo en el caso simplificado, 0.5, entre un muro y el cielo o entre el muro y el suelo, o calcularse con las gráficas mencionadas con anterioridad.
+
+\subsection{Esquema de resistencias térmicas}
+
+Podemos llegar al esquema de resistencias térmicas partiendo del esquema para la radiación incidente y observando que será igual, pero con el sentido de la radiación invertido. Como la dirección que escogemos para la radiación es arbitraria, entonces esto solo implica un cambio de signo en la fórmula que representa ea éste esquema.
+
+\[ \varphi _{ int } = \frac{ T_{ ext} - T_{ int } - \varphi _e R_{ ext } }{ R_m + R_{ int } + R_{ ext } } \]
+
+\[ \varphi _{ int } = \frac{ T_{ ext} - T_{ int } - R_{ ext } F_o \sigma \varepsilon _{ s \, ext } \varepsilon _o \left( T_{ s\, ext }^4 - T_o^4 \right) }{ R_m + R_{ int } + R_{ ext } } \]
+
+Como lo que nos interesa es tener $ \varphi _{ int } $ en función de $ T_{ ext } $ y $ T_{ int } $ hay que sustituir $ T_{ s \, ext } $ en la ecuación anterior:
+
+\[ T_{ s \, ext } = T_{ ext } + \varphi _{ int } \left( R_m + R_{ int } \right) \]
+
+\[ \boxed{ \varphi _{ int } = \frac{ T_{ ext} - T_{ int } - R_{ ext } F_o \sigma \varepsilon _{ s \, ext } \varepsilon _o \left\{ \left[ T_{ ext } + \varphi _{ int } \left( R_m + R_{ int } \right) \right] ^4 - T_o^4 \right\} }{ R_m + R_{ int } + R_{ ext } } } \]
+
+\subsection*{Métodos numéricos}
+
+La ecuación anterior tiene un problema, ya que no se puede despejar analíticamente. Para resolverla, es necesario entonces utilizar algún método númerico que mediante iteraciones nos permita resolver una ecuación de la forma:
+
+\[ \varphi _{ int } = f \left( \varphi _{ int } \right) \]
+
+Algunas de las opciones son las siguientes:
+
+\begin{enumerate}
+    \item
+    \textbf{Newton Raphson}
+
+    Es el método matemático que nos va a permitir tener la precisión que deseemos, pero puede tener un alto costo computacional. Además, requiere calcular una derivada que en ciertos casos puede tener una complejidad considerable. La ecuación anterior se debe rearreglar para tener la forma:
+
+    \[ f \left( \varphi _{ int } \right) = 0 \]
+
+    y se itera de la siguiente manera:
+
+    \[ \varphi _{ int \, 0 } = 0 \]
+
+    o algún otro valor arbitrario que consideremos cercano a la respuesta real.
+
+    \[ \varphi _{ int \, i } = \varphi _{ int \, i - 1 } - \frac{ f \left( \varphi _{ int \, i - 1 } \right) }{ f' \left( \varphi _{ int \, i - 1 } \right) } \]
+
+    la iteración continúa mientras que:
+
+    \[ \Delta \varphi_i = \varphi _i - \varphi _{ i - 1 } > \delta \]
+
+    donde $ \delta $ es la precisión requerida y suele tener un valor de alrededor de $ 1 \times 10 ^{ -8 } $. La presición llegar a lograrse muchas veces en 5 iteraciones.
+
+    \item
+    \textbf{Iteración simple}
+
+    Una opción mucho más sencilla es simplemente tomar la forma generar de la ecuación para métodos numéricos e iterar sobre ella. El problema que esto puede tener es que la respuesta converge más lentamente, aunque rara vez es necesario hacer más de 10 iteraciones para lograr una precisión aceptable.
+
+    \[ \begin{aligned}
+        & \varphi _{ int \, 0 } = 0 \\
+        & \varphi _{ int \, 1 } = f \left( \varphi _{ int \, 0 } \right) \\ 
+        & \varphi _{ int \, 2 } = f \left( \varphi _{ int \, 1 } \right) \\ 
+        & \vdots \\
+        & \varphi _{ int \, 10 } = f \left( \varphi _{ int \, 1 } \right) \\ 
+        & \varphi _{ int } \approx \varphi _{ int \, 10 }
+    \end{aligned} \]
+
+    \item
+    \textbf{Excel: función OBJETIVO}
+
+    De manera similar a la radiación incidente de onda corta, podemos resolver el problema de balance de calor contemplado la radiación de onda larga utilizado la función OBJETIVO de Excel, aplicando el método anterior de iteración simple a una hoja de cálculo:
+
+    Tenemos el siguiente sistema de ecuaciones:
+
+    \[ T_{ a \, ext } \longrightarrow \text{valor conocido} \]
+
+    \[ T_{ a \, int } \longrightarrow \text{incógnita} \]
+
+    \[ \sum{ \Phi } = 0 \]
+
+    \[ \sum{ \Phi } = \Phi _{ fuente } + \Phi _{ pared } \]
+
+    \[ \Phi _{ fuente } \longrightarrow \text{valor conocido} \]
+
+    \[ \Phi _{ pared } = f \left( T_{ a \, ext }, \, T_{ a \, int } \right) \]
+
+    Las celdas de Excel se plantean de la siguiente manera:
+
+    \[ \begin{aligned}
+        & \mathrm{A} 1 \rightarrow T_{ a \, ext } \longrightarrow \text{fijo} \\
+        & \mathrm{A} 2 \rightarrow T_{ a \, int } \longrightarrow \text{establecer un valor inicial, por ejemplo 0 \degree C} \\
+        & \\
+        & \mathrm{D} 1 \rightarrow \varphi _{ int \, 0 } = 0 \\
+        & \mathrm{D} 2 \rightarrow \varphi _{ int \, 1 } = f \left( \varphi _{ int \, 0 } \right) \\ 
+        & \mathrm{D} 3 \rightarrow \varphi _{ int \, 2 } = f \left( \varphi _{ int \, 1 } \right) \\ 
+        & \vdots \\
+        & \mathrm{D} 11 \rightarrow \varphi _{ int \, 10 } = f \left( \varphi _{ int \, 1 } \right) \\ 
+        & \\
+        & \mathrm{E} 1 \ldots \mathrm{D} 11 \rightarrow \varphi _{ pared \, 1 } \\ 
+        & \mathrm{F} 1 \ldots \mathrm{E} 11 \rightarrow \varphi _{ pared \, 2 } \\
+        & \vdots \\
+        & \mathrm{I} 1 \ldots \mathrm{I} 11 \rightarrow \varphi _{ pared \, 6 } \\
+        & \vdots \\
+        & \mathrm{A} 3 \rightarrow \Phi _{ fuente } \longrightarrow \text{fijo} \\
+        & \mathrm{A} 4 \rightarrow A_1 \longrightarrow \text{fijo} \\
+        & \mathrm{A} 5 \rightarrow A_2 \longrightarrow \text{fijo} \\
+        & \vdots \\
+        & \mathrm{A} 9 \rightarrow A_6 \longrightarrow \text{fijo} \\
+        &\mathrm{A} 10 \rightarrow \sum{ \Phi } = \Phi _{ fuente } + \Phi _{ pared } \longrightarrow f \left( \$ \mathrm{A} \$ 3, \, \ldots , \, \$ \mathrm{A} \$ 8, \$ \mathrm{D} \$ 11, \, \ldots , \, \$ \mathrm{I} \$ 11 \right)
+    \end{aligned} \]
+
+    En la función OBJETIVO buscaremos que la celda $ \mathrm{A} 10 $ sea 0, cambiando el valor de la celda $ \mathrm{A} 2 $, que es igual a $ T_{ a \, int } $ y es el resultado que buscamos.  
+
+    \[ \]
+
+\end{enumerate}
+
+\subsection*{Emisión a varias superficies}
+
+La superficie del muro intercambiará radiación con todas las superficie que sean visibles para ella. Podemos convertir la fórmula estándar de emisión, que solo considera una superficie, a una fórmula que considere la emisión a varias superficies.
+
+\[ \varphi _e = \sum{ \varphi _{ e \, i } } = \sigma \varepsilon _{ s \, ext } \sum{ F_i \varepsilon _i \left( T_{ s \, ext }^4 - T_i^4 \right) } \]
+
+Que desarrollado queda como:
+
+\[ \boxed{ \varphi _e = \sigma \varepsilon _{ s \, ext } \sum{ F_i \varepsilon _i \left\{ \left[ T_{ a \, int } + \varphi _{ int } \left( R_{ int } + R_m \right) \right] ^4 - T_i^4 \right\} } } \]
+
+\subsection{Radiación total}
+
+Durante el día, un muro expuesto al sol va a tener tanto radiación solar incidente directa en onda corta como emisión de radiación en onda larga. Podemos generar entonces una función general para la transferencia de calor en un muro con radiación en el exterior:
+
+\[ \varphi _\theta = \varphi _s \cos \alpha \cos \beta \]
+
+\[ \varphi _r = \alpha \varphi _\theta - \varphi _e \]
+
+\[ \boxed{ \varphi _{ int } = \frac{ T_{ ext} - T_{ int } - R_{ ext } \left\{ F_o \sigma \varepsilon _{ s \, ext } \sum{ F_i \varepsilon _i \left[ \left( T_{ a \, int } + \varphi _{ int } \left( R_{ int } + R_m \right) \right) ^4 - T_i^4 \right] } \right\} }{ R_m + R_{ int } + R_{ ext } } } \]
+
+o de manera abreviada: 
+
+\[ \boxed{ \varphi _{ int } = \frac{ T_{ ext} - T_{ int } - R_{ ext } \varphi _r }{ R_m + R_{ int } + R_{ ext } } } \]
+
+\section{Transmisión en una fachada doble con ventilación}
+
+Este ejemplo es muy parecido al de una ventana doble, con la excepción de que el aire en el interior no se encuentra estancado, si no que está en movimiento, y por ende, transporta calor y transmite al resto de las capas por convección.
+
+El esquema es de aplicación amplia, por que las paredes pueden ser transparentes, en cuyo caso tendríamos una fachada acristalada doble con ventilación; la pared interior podría ser opaca, que sería el caso de un muro Trombe; o ambas paredes podrían ser opacas, que es el caso de una fachada ventilada. Estos ejemplos específicos serán mencionados más adelante en los capítulos de envolvente térmica y de control térmico natural.
+
+\subsection{Esquema general}
+
+\subsection{Análisis de la radiación solar}
+
+\[ \varphi _\theta = \varphi _s \cos \alpha \cos \beta \]
+
+\[ \varphi _r = \alpha \varphi _\theta - \varphi _e \]
+
+\[ \varphi _{ \tau \, 1 } = \tau _1 \varphi _\theta \longrightarrow 0 \text{ si el primer muro es opaco} \]
+
+\[ \varphi _{ \tau \, 2 } = \tau _2 \varphi _{ \tau 1 } = \tau _1 \tau _2 \varphi _\theta \longrightarrow 0 \text{ si el segundo muro es opaco} \]
+
+\subsection{Esquema de resistencias térmicas}
+
+\subsection{Flujo térmico del aire}
+
+Como no hay acumulación de masa dentro de la fachada doble:
+
+\[ \dot{m} _e = \dot{m} _s = \dot{m} _a \]
+
+Del balance de calor:
+
+\[ \Phi _v = \dot{m} c \Delta T \]
+
+Convirtiendo a densidad de flujo de calor:
+
+\[ \varphi _a = \frac{ \dot{m} _a c_a \left( T_e - T_a \right) }{ A } \]
+
+Donde:
+
+\begin{itemize}
+    \item 
+    $ c_a $: calor específico del aire
+
+    \item
+    $ A $: Área de la fachada
+
+\end{itemize}
+
+\subsection{Ecuaciones de flujo}
+
+\[ \varphi _{ ext } = \frac{ T_{ a \, ext } - T_{ s \, ext \, 1 } }{ R_{ ext } } \]
+
+\[ \varphi _1 = \frac{ T_{ s \, ext \, 1} - T_{ a } }{ R_{ v \, 1 } + R_{ a \, 1 } } \]
+
+\[ \varphi _2 = \frac{ T_{ a } - T_{ s \, ext \, 2 } }{ R_{ a \, 2 } } \]
+
+\[ \varphi _{ int } = \frac{ T_{ s \, ext \, 2 } - T_{ int } }{ R_{ v \, 2 } + R_{ int } } \]
+
+\subsection{Balances de energía}
+
+\[ \alpha _1 \varphi _\theta + \varphi _e = \varphi _1 \]
+
+\[ \varphi _1 = \varphi _a + \varphi _2 \]
+
+\[ \varphi _2 + \alpha _2 \tau _1 \varphi _\theta = \varphi _i \]
+
+Tenemos ahora establecido un sistema que habrá que resolver.
 
 %\nocite{*}
 %\printbibliography
