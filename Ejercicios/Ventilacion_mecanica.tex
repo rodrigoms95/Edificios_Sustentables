@@ -1,0 +1,297 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{upgreek}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{hyperref}
+%\usepackage[
+%    backend=biber,
+%    style=apa,
+%  ]{biblatex}
+\usepackage{csquotes}
+%\addbibresource{bibresource}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Edificios Sustentables}
+\chead{Transferencia de calor}
+\rhead{Rodrigo Muñoz Sánchez}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\renewcommand{\theenumiii}{\roman{enumiii}}
+
+\title{Ejercicios de transferencia de calor}
+\author{Rodrigo Muñoz}
+\date{Enero 2022}
+
+\graphicspath{Images/}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+
+Se tiene aire a $ 25 \left[ \degree C \right] $ y una humedad relativa del $ 20\% $ a nivel del mar que se sujeta a una humidifación adiabática con eficiencia de $ 50\% $. 
+
+Obtén las características del aire resultante.
+
+Primero, se leen las características del aire en un diagrama psicrométrico, incluyendo nu, $ \nu $, el volumen específico.
+
+\begin{itemize}
+    \item
+	$ \theta _1 = 25 \left[ \degree C \right] $
+
+    \item
+	$ R_{ h \, 1 } = 19.93\% $
+
+    \item
+	$ r_1 = 4.0 \left[ \sfrac{ g }{ kg } \right] $
+	
+    \item
+    $ \nu _1 = 0.850 \left[ \sfrac{ m ^3 }{ kg } \right] $
+	
+    \item
+    $ h_1 = 35.34 \left[ \sfrac{ kJ }{ kg } \right] $
+
+\end{itemize}
+
+Para calcular $ \theta _{ sat } $ y $ r_{ sat } $, la temperatura y la humedad absoluta de saturación para humidifcación adiabática, se leen los valores a entalpía constante, con $ h = 35.34 \left[ \sfrac{ kJ }{ kg } \right] $ y $ R_h = 100\% $.
+
+Posteriormente, se obtienen los valores de salida despejando la ecuación de humidificación adiabática.
+
+\[ \eta = \frac{ \theta _2 - \theta _1 }{ \theta _ { sat } - \theta _1 } \]
+
+\[ \eta = \frac{ r_2 - r_1 }{ r_{ sat } - r_1 } \]
+
+\[ \theta _2 = \eta \left( \theta _{ sat } - \theta _1 \right) + \theta _1 = 0.5 \left( 12.5 - 25 \right) + 25 = 18.75 \left[ \degree C \right] \]
+
+\[ r_2 = \eta \left( r_{ sat } - r_1 \right) = 0.5 \left( 9.02 - 4.0 \right) + 4.0 = 6.51 \left[ \sfrac{ g }{ kg } \right] \]
+
+Finalmente, se encuentran los valores restantes del aire en un diagrama psicrométrico.
+
+\begin{itemize}
+    \item
+    $ \theta _2 = 18.8 \left[ \degree C \right] $
+    
+    \item
+    $ R_{ h \, 2 } = 47.76\% $
+    
+    \item
+    $ r_2 = 6.5 \left[ \sfrac{ g }{ kg } \right] $
+    
+    \item
+    $ \nu_2 = 0.835 \left[ \sfrac{ m^3 }{ kg } \right] $
+    
+    \item
+    $ h_2 = 35.40 \left[ \sfrac{ kJ }{ kg } \right] $
+
+\end{itemize}
+
+Las diferencias en los valores se deben a la resolución del diagrama psicrométrico utilizado.
+
+\section{}
+
+Se tiene una habitación a nivel del mar con una carga sensible de $ 200 \left[ W \right] $ y una carga latente de $ 100 \left[ W \right] $. Si en el interior de la habitación se tiene una temperatura de $ 20 \left[ \degree C \right] $ con $ 40\% $ de humedad relativa, se recircula el $ 100\% $ del aire interior con un gasto de $ 100 \left[ \sfrac{ m^3 }{ h } \right] $, ¿cuáles serán las condiciones del aire de salida de la CTA?
+
+Primero, se leen las características del aire interior, I, en un diagrama psicrométrico.
+
+\begin{itemize}
+    \item
+    $ \theta _I = 20 \left[ \degree C \right] $
+    
+    \item
+    $ R_{ h \, I } = 40.17\% $
+    
+    \item
+    $ r_I = 5.9 \left[ \sfrac{ g }{ kg } \right] $
+    
+    \item
+    $ \nu _I = 0.838 \left[ \sfrac{ m^3 }{ kg } \right] $
+    
+    \item
+    $ q = 100 \left[ \sfrac{ m^3 }{ h } \right] $
+    
+    \item
+    $ \dot{ m } = 119.3 \left[ \sfrac{ kg }{ h } \right] = 3.31 \times 10^{ -4 } \left[ \sfrac{ kg }{ s } \right] $
+    
+    \item
+    $ h_I = 35.10 \left[ \sfrac{ kJ }{ kg } \right] $
+
+\end{itemize}
+
+Posteriormente se usa la ecuación de la carga sensible para obtener la entalpía intermedia entre carga sensible y latente, $ h_C $. 
+
+\[ CS = \dot{ m } \left( h_I - h_C \right) \]
+
+\[ 0.2 = 0.0331 \left( 35.10 - h_C \right) \]
+
+\[ h_C = 29.06 \left[ \sfrac{ kJ }{ kg } \right]\]
+
+\begin{itemize}
+    \item
+    $ h_C = 29.04 \left[ \sfrac{ kJ }{ kg } \right] $
+
+    \item
+    $ r_C = 5.9 \left[ \sfrac{ g }{ kg } \right] $
+
+    \item
+    $ \theta _C = 13.8 \left[ \degree C \right] $
+
+    \item
+    $ \nu _C = 0.820 \left[ \sfrac{ m^3 }{ kg } \right] $
+
+\end{itemize}
+
+Como fue un movimiento de carga sensible, la humedad absoluta se mantiene constante.
+Repetimos el procedimiento para la carga latente y así poder obtener la entalpía del aire de salida de la CTA, hS.
+
+\[ CL = \dot{ m } \left( h_C - h_S \right) \]
+
+\[ 0.1 = 0.0331 \left( 29.04 - h_C \right) \]
+
+\[ h_C = 26.02 \left[ \sfrac{ kJ }{ kg } \right]\]
+
+\begin{itemize}
+    \item
+    $ h_S = 26.01 \left[ \sfrac{ kJ }{ kg } \right] $
+    
+    \item
+    $ r_S = 4.9 \left[ \sfrac{ g }{ kg } \right] $
+    
+    \item
+    $ \theta _S = 13.8 \left[ \degree C \right] $
+    
+    \item
+    $ \nu _S = 0.819 \left[ \sfrac{ m^3 }{ kg } \right] $
+
+\end{itemize}
+
+Como fue un movimiento de carga latente, la humedad absoluta se mantiene constante.
+
+\section{}
+
+Se tiene un flujo de $ 1 \left[ \sfrac{ kg }{ s } \right] $ de aire a nivel del mar, a $ 40 \left[ \degree C \right]  $ con $ R_h = 40\% $ a la entrada de una CTA. La CTA tiene una batería fría con potencia de 60 kW y factor de by-pass de $ 0.2 $, y una batería caliente con potencia de $ 8 \left[ kW \right] $. Calcula las condiciones del aire a la salida de la CTA.
+Primero, se leen las características del aire de entrada, $ E $, en un diagrama psicrométrico.
+
+\begin{itemize}
+    \item
+    $ \theta _E = 40 \left[ \degree C \right] $
+
+    \item
+    $ R_{ h \, E } = 39.91\% $
+
+    \item
+    $ r_E = 19.5 \left[ \sfrac{ g }{ kg } \right] $
+
+    \item
+    $ h_E = 90.46 \left[ \sfrac{ kJ }{ kg } \right] $
+
+\end{itemize}
+
+Se calcula la entalpía a la salida de la batería fría sin considerar el factor de bypass.
+
+\[ P_{ BF } = dot{ m } \left( h_E - h_F \right) \]
+
+\[ h_F = h_E - \frac{ P_{ BF } }{ \dot{ m } } \]
+
+\[ h_F = 90.46 - \frac{ 60 }{ 1 } = 30.46 \left[ \sfrac{ kJ }{ kg } \right] \]
+
+Como la entalpía de fin de proceso tendría una humedad relativa mayor al $ 100\% $ con la humedad absoluta del aire de entrada, va a haber condensación. Se encuentra el punto de rocío para el aire de entrada.
+
+\begin{itemize}
+    \item
+    $ \theta _R = 24.5 \left[ \degree C \right] $
+
+    \item
+    $ R_{ h \, R } = 100\% $
+
+    \item
+    $ r_R = 19.46 \left[ \sfrac{ g }{ kg } \right] $
+
+    \item
+    $ h_R = 74.21 \left[ \sfrac{ kJ }{ kg } \right] $
+
+\end{itemize}
+
+El aire resultante del proceso de enfriamiento encuentra con humedad relativa de  $ 100\% $ y con la entalpía a la salida de la batería fría sin bypass, $ h_F $.
+
+\begin{itemize}
+    \item
+    $ \theta _F = 10.5 \left[ \degree C \right] $
+
+    \item
+    $ R_{ h \, F } = 100\% $
+
+    \item
+    $ r_F = 7.89 \left[ \sfrac{ g }{ kg } \right] $
+
+    \item
+    $ h_F = 30.45 \left[ \sfrac{ kJ }{ kg } \right] $
+
+\end{itemize}
+
+Ahora, se calcula el punto de salida real, $ A $, de la batería fría utilizando el factor de bypass.
+
+\[ f_{ BP } = \frac{ \theta _A - \theta _F }{ \theta _E - \theta _F } \]
+
+\[ f_{ BP } = \frac{ r_A - r_F }{ r_E - r_F } \]
+
+\[ \theta _A = f_{ BP } \left( \theta _E - \theta _F \right) = 0.2 \left( 40 - 10.5 \right) + 10.5 = 16.4 \left[ \degree C \right] \]
+
+\[ \theta _A = f_{ BP } \left( r_E - r_F \right) = 0.2 \left( 19.5 - 17.89 \right) + 7.89 = 10.21 \left[ \degree C \right] \]
+
+Se leen los valores del punto en un diagrama psicrométrico.
+
+\begin{itemize}
+    \item
+    $ \theta _A = 16.4 \left[ \degree C \right] $
+
+    \item
+    $ R_{ h \, A } = 87.48\% $
+
+    \item
+    $ r_A = 10.2 \left[ \sfrac{ g }{ kg } \right] $
+
+    \item
+    $ h_A = 42.32 \left[ \sfrac{ kJ }{ kg } \right] $
+
+\end{itemize}
+
+Posteriormente, se calcula la entalpía a la salida de la batería caliente.
+
+\[ P_{ BC } = \dot{ m } \left( h_S - h_A \right) \]
+
+\[ h_S = \frac{ P_{ BF } }{ \dot{ m } } + h_A \]
+
+\[ h_S = \frac{ 8 }{ 1 } + 42.32 = 50.32 \left[ \sfrac{ kJ }{ kg } \right] \]
+
+Se busca el punto de salida de la CTA, $ S $, en un diagrama psicrométrico, conocida la entalpía y sabiendo que el movimiento se realiza a humedad absoluta constante.
+
+\begin{itemize}
+    \item
+    $ \theta _S = 25 \left[ \degree C \right] $
+
+    \item
+    $ R_{ h \, S } = 49.82\% $
+
+    \item
+    $ r_S = 10.0 \left[ \sfrac{ g }{ kg } \right] $
+
+    \item
+    $ h_S = 50.63 \left[ \sfrac{ kJ }{ kg } \right] $
+
+\end{itemize}
+
+%nocite{*}
+%\printbibliography
+
+\end{document}
