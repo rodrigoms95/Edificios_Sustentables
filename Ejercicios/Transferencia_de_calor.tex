@@ -334,13 +334,13 @@ La radiación solar incide en el primer vidrio, donde una parte es absorbida y l
 
 Se tiene un paralelepípedo de $ 30 \times 30 \times 60 \left[ cm \right] $. Las paredes son de acero pintado de blanco con un espesor de $ e = 1 \left[ cm \right] $. La conductividad del acero es de $ \lambda = 52.3 \left[ \sfrac{ W }{ m K } \right] $. Todas las paredes están selladas en las orillas y esquinas con un chaflán de soldadura, por lo que se puede suponer que no hay infiltraciones y que los puentes térmicos son despreciables. Una de las caras de $ 30 \times 30 \left[ cm \right] $ recibe una radiación directa normal de $ \varphi _s = 100 \left[ \sfrac{ W }{ m ^2 } \right] $. La temperatura exterior es de 10 \degree C, hay un fuente interna de calor con un flujo de $ \Phi _{ fuente } = 100 \left[ W \right] $.
 
-En este no hay que olvidar la diferencia entre la densidad de flujo térmico, que representa una potencia por unidad de área y se representa con la letra griega \emph{phi} minúscuala, $ \varphi \left[ \sfrac{ W }{ m ^2 } \right] $, y el flujo térmico, o de calor, que se representa con la letra griega \emph{phi} mayúscula y es la potencia total que atraviesa una pared, $ \Phi = \varphi A \left[ W \right] $
+En este momento no hay que olvidar la diferencia entre la densidad de flujo térmico, que representa una potencia por unidad de área y se representa con la letra griega \emph{phi} minúscuala, $ \varphi \left[ \sfrac{ W }{ m ^2 } \right] $, y el flujo térmico, o de calor, que se representa con la letra griega \emph{phi} mayúscula y es la potencia total que atraviesa una pared, $ \Phi = \varphi A \left[ W \right] $
 
 Se pide calcular la temperatura en el interior del paralelepípedo.
 
 \subsection{Densidad de flujo a través de las paredes}
 
-Todas las paredes tienen convección natural en interior y exterior más conducción.
+Cada pared tendrá conducción a través de ésta y convección natural tanto en el en interior y como en el exterior.
 
 \[ e_p = e_1 = e_2 = e_3 = e_4 = e_5 = e_6 = 0.01 \left[ m \right] \]
 
@@ -352,13 +352,15 @@ Para la pared de $ 30 \times 30 \left[ cm \right] $ sin radiación (pared 1) y l
 
 Hemos puesto el sentido de flujo de tal manera que será positivo de afuera hacia adentro.
 
+La resistencia superficial interior no depende de la orientación del muro, por lo que es igual para todas las paredes del paralelepípedo:
+
 \[ R_{ s \, int \, i } = 0.04 \left[ \sfrac{ W }{ m ^2 K } \right] \]
 
 Para la resistencia superficial exterior de las paredes horizontales, se toma en cuenta que el flujo es horizontal.
 
 \[ R_{ s \, ext \, 1 } = R_{ s \, ext \, 3 } = R_{ s \, ext \, 4 } = R_{ s \, ext \, 6 } = 0.13 \left[ \sfrac{ W }{ m ^2 K } \right] \]
 
-Para las paredes verticales, las resistencia estándar es diferete si el flujo es ascendente o si es descendente. Para la pared de arriba escogemos flujo ascendente y para la de abajo flujo descendente, lo que implica que estamos suponiendo que el flujo irá desde el interior del paralelepípedo hacia el exterior.
+Para las paredes horizontales, las resistencia estándar es diferente si el flujo es ascendente o si es descendente. Para la pared de arriba escogemos flujo ascendente y para la de abajo flujo descendente, lo que implica que estamos suponiendo que el flujo irá desde el interior del paralelepípedo hacia el exterior.
 
 \[ R_{ s \, ext \, 2 } = 0.1 \left[ \sfrac{ W }{ m^2 K } \right] \]
 
@@ -370,11 +372,13 @@ Ahora podemos calcular el flujo en cada pared.
 
 Aunque tengan diferentes dimensiones, la densidad de flujo para todas las paredes será el mismo, ya que no depende del área de la pared.
 
-\[ \varphi _{ int \, 1 } = \varphi _{ int \, 3 } = \varphi _{ \int 4 } = \frac{ T_{ a \, ext } - T_{ a \, int } }{ R_{ eq \, 1 } } = \frac{ 10 - T_{ a \, int } }{ 0.1702 } \]
+\[ \varphi _{ int \, 1 } = \varphi _{ int \, 3 } = \varphi _{ int 4 } = \frac{ T_{ a \, ext } - T_{ a \, int } }{ R_{ eq \, 1 } } = \frac{ 10 - T_{ a \, int } }{ 0.1702 } \]
 
 donde
 
 \[ R_{ eq \, 1 } = R_{ eq \, 3 } = R_{ eq \, 4 } = R_{ eq \, 6 } = R_{ p \, 1 } + R_{ s \, int \, 1 } + R_{ s \, ext \, 1 } = 0.1702 \left[ \sfrac{ W }{ m ^2 K } \right] \]
+
+Para las paredes horizontales:
 
 \[ \varphi _2 = \frac{ 10 - T_{ a \, int } }{ 0.1402 } \]
 
@@ -390,9 +394,11 @@ Sabemos que hay un estado de flujo estacionario, por lo que
 
 \[  \sum{ \Phi _i } = 0 \longrightarrow \Phi _{ total } = 0 \]
 
+\[ \Phi _{ total } = \Phi _{ pared } + \Phi _{ puentes \, t \acute{e} rmicos } + \Phi _{ \tau \, solar } + \Phi _{ ventilaci \acute{o} n } + \Phi _{ fuente } \]
+
 Además, no hay puentes térmicos, por lo que:
 
-\[ \Phi _{ pt } = 0 \]
+\[ \Phi _{ puentes \, t \acute{e}rmicos } = \Phi _{ pt } = 0 \]
 
 donde
 
@@ -400,11 +406,11 @@ donde
 
 Como no hay ventliación ni infiltraciones:
 
-\[ \Phi _v = 0 \]
+\[ \Phi _{ ventilaci \acute{o} n } = \Phi _v = 0 \]
 
 Tampoco hay radiación que entre directamente hacia el interior:
 
-\[ \Phi _{ \tau \, s } = 0 \]
+\[ \Phi _{ \tau \, solar } = \Phi _{ \tau \, s } = 0 \]
 
 donde
 
@@ -412,13 +418,13 @@ donde
 
 y se da principalmente en ventanas.
 
-El flujo total es:
+El flujo total es entonces:
 
 \[ \Phi _{ total } = \Phi _{ pared } + \Phi _{ fuente } = 0 \]
 
 donde
 
-\[ \Phi _{ pared } = \sum{ A_i \, \varphi _{ int \, i } } = A_1 \, \varphi _{ int \, 1 } + A_2 \, \varphi _{ int \, 2 } + 2 A_1 \, \varphi _{ int \, 3 } + A_5 \, \varphi _{ int \, 5 } + A_6 \, \varphi _{ int \, 6 } + \]
+\[ \Phi _{ pared } = \sum{ A_i \, \varphi _{ int \, i } } = A_1 \, \varphi _{ int \, 1 } + A_2 \, \varphi _{ int \, 2 } + 2 A_1 \, \varphi _{ int \, 3 } + A_5 \, \varphi _{ int \, 5 } + A_6 \, \varphi _{ int \, 6 } \]
 
 \[ \Phi _{ pared } = 9 \left( \frac{ 10 - T_{ a \, int } }{ 0.1702 } \right) + 18 \left( \frac{ 10 - T_{ a \, int } }{ 0.1402 } \right) + 2 \cdot 18 \left( \frac{ 10 - T_{ a \, int } }{ 0.2102 } \right) + 9 \left( \frac{ 15.2 - T_{ a \, int } }{ 0.1702 } \right) \]
 

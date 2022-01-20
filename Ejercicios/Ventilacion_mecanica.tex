@@ -21,14 +21,14 @@
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{Edificios Sustentables}
-\chead{Transferencia de calor}
+\chead{Ventilación mecánica}
 \rhead{Rodrigo Muñoz Sánchez}
 \rfoot{\thepage}
 \renewcommand{\headrulewidth}{0pt}
 
 \renewcommand{\theenumiii}{\roman{enumiii}}
 
-\title{Ejercicios de transferencia de calor}
+\title{Ejercicios de ventilación mecánica}
 \author{Rodrigo Muñoz}
 \date{Enero 2022}
 
@@ -43,6 +43,8 @@
 Se tiene aire a $ 25 \left[ \degree C \right] $ y una humedad relativa del $ 20\% $ a nivel del mar que se sujeta a una humidifación adiabática con eficiencia de $ 50\% $. 
 
 Obtén las características del aire resultante.
+
+La humidificación adiabática se hace a entalpía constante y de manera teórica hasta llegar a una humedad relativa de $ 100\% $. En realidad, la humedad relativa resultante es menor, debido a la eficiencia del sistema.
 
 Primero, se leen las características del aire en un diagrama psicrométrico, incluyendo nu, $ \nu $, el volumen específico.
 
@@ -66,7 +68,23 @@ Primero, se leen las características del aire en un diagrama psicrométrico, in
 
 Para calcular $ \theta _{ sat } $ y $ r_{ sat } $, la temperatura y la humedad absoluta de saturación para humidifcación adiabática, se leen los valores a entalpía constante, con $ h = 35.34 \left[ \sfrac{ kJ }{ kg } \right] $ y $ R_h = 100\% $.
 
-Posteriormente, se obtienen los valores de salida despejando la ecuación de humidificación adiabática.
+\begin{itemize}
+    \item
+    $ h = 35.35 \left[ \sfrac{ kJ }{ kg } \right] $
+    
+    \item 
+    $ r_{ sat } = 9.02 \left[ \sfrac{ g }{ kg } \right] $
+    
+    \item
+    $ \theta _{ sat } = 12.5 \left[ \degree C \right] $
+
+\end{itemize}
+
+La entalpía obtenida del diagrama psicrométrico es ligeramente debido a la presición del diagrama psicrométrico, donde hemos escogido el valor más cercano al original.
+
+Posteriormente, obtenemos los valores de salida despejando la ecuación de humidificación adiabática.
+
+\[ \eta = 50 \% \]
 
 \[ \eta = \frac{ \theta _2 - \theta _1 }{ \theta _ { sat } - \theta _1 } \]
 
@@ -76,7 +94,7 @@ Posteriormente, se obtienen los valores de salida despejando la ecuación de hum
 
 \[ r_2 = \eta \left( r_{ sat } - r_1 \right) = 0.5 \left( 9.02 - 4.0 \right) + 4.0 = 6.51 \left[ \sfrac{ g }{ kg } \right] \]
 
-Finalmente, se encuentran los valores restantes del aire en un diagrama psicrométrico.
+Finalmente, encontramos los valores restantes del aire en un diagrama psicrométrico.
 
 \begin{itemize}
     \item
@@ -102,7 +120,7 @@ Las diferencias en los valores se deben a la resolución del diagrama psicromét
 
 Se tiene una habitación a nivel del mar con una carga sensible de $ 200 \left[ W \right] $ y una carga latente de $ 100 \left[ W \right] $. Si en el interior de la habitación se tiene una temperatura de $ 20 \left[ \degree C \right] $ con $ 40\% $ de humedad relativa, se recircula el $ 100\% $ del aire interior con un gasto de $ 100 \left[ \sfrac{ m^3 }{ h } \right] $, ¿cuáles serán las condiciones del aire de salida de la CTA?
 
-Primero, se leen las características del aire interior, I, en un diagrama psicrométrico.
+Primero, leemos las características del aire interior, I, en un diagrama psicrométrico.
 
 \begin{itemize}
     \item
@@ -128,7 +146,7 @@ Primero, se leen las características del aire interior, I, en un diagrama psicr
 
 \end{itemize}
 
-Posteriormente se usa la ecuación de la carga sensible para obtener la entalpía intermedia entre carga sensible y latente, $ h_C $. 
+Posteriormente usamos la ecuación de la carga sensible para obtener la entalpía intermedia entre carga sensible y latente, $ h_C $. De esta manera estamos quitando el efecto de la carga sensible.
 
 \[ CS = \dot{ m } \left( h_I - h_C \right) \]
 
@@ -152,7 +170,8 @@ Posteriormente se usa la ecuación de la carga sensible para obtener la entalpí
 \end{itemize}
 
 Como fue un movimiento de carga sensible, la humedad absoluta se mantiene constante.
-Repetimos el procedimiento para la carga latente y así poder obtener la entalpía del aire de salida de la CTA, hS.
+
+Repetimos el procedimiento para quitar el efecto de la carga latente y así poder obtener la entalpía del aire de salida de la CTA, hS.
 
 \[ CL = \dot{ m } \left( h_C - h_S \right) \]
 

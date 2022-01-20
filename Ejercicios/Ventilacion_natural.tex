@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{upgreek}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{hyperref}
+%\usepackage[
+%    backend=biber,
+%    style=apa,
+%  ]{biblatex}
+\usepackage{csquotes}
+%\addbibresource{bibresource}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Edificios Sustentables}
+\chead{Transferencia de calor}
+\rhead{Rodrigo Muñoz Sánchez}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\renewcommand{\theenumiii}{\roman{enumiii}}
+
+\title{Ejercicios de transferencia de calor}
+\author{Rodrigo Muñoz}
+\date{Enero 2022}
+
+\graphicspath{Images/}
+
+\begin{document}
+
+\maketitle
+
+\section{}
+
+Se tiene una casa cuadrada de $ 3 \times 3 \times 3 \left[ m \right] $, a nivel del mar, con una temperatura de $ 25 \left[ \degree C \right] $ y humedad relativa de $ 30\% $. La casa tiene una ventana de $ 1 \left[ m^2 \right] $ en caras opuestas. Si incide un viento de $ 3 \left[ \sfrac{ km }{ h } \right] $ perpendicular a la ventana, calcula el gasto de viento en el interior.
+
+De acuerdo con la NTC-Viento-2017, los coeficientes de presión son:
+
+\begin{itemize}
+    \item
+    Barlovento: $ C_{ v \, 1 } = 0.8 $
+    
+    \item
+    Sotavento: $ C_{ v \, 2 } = -0.4 $
+
+\end{itemize}
+
+Las características del aire son:
+
+\begin{itemize}
+    \item
+    $ \rho _a = 1.033 \left[ \sfrac{ kg }{ m^3 } \right] $
+    
+    \item
+    $ v = 3 \left[ \sfrac{ km }{ h } \right] = 0.833 \left[ \sfrac{ m }{ s } \right] $
+
+\end{itemize}
+
+Calculamos la diferencia de presión:
+
+\[ \Delta P_v = \frac{1}{2} \rho _a v^2 \left( C_{ v \, 2 } - C_{ v \, 1 } \right) = 0.5 \cdot 1.033 \cdot 0.833^2 \left[ 0.8 - \left( -0.4 \right) \right] = 0.43 \left[ Pa \right] \]
+
+Como no hay más información acerca de las ventanas, tomamos:
+
+\[ C_{ d \, 1 } = C_{ d \, 2 } = 0.65 \]
+
+\[ \left( AC_d \right) _{ eff } = \frac{ 1 }{ \sqrt{ \sum{ \frac{ 1 }{ \left(  A_i C_{ d \, i } \right) ^2 } } } } = \frac{ 1 }{ \sqrt{ \frac{ 1 }{ \left( 1 \cdot 0.65 \right) ^2 } } } \]
+
+\[ \left( AC_d \right) _{ eff } = 0.460 \left[ m^2 \right] \]
+
+Por último, calculamos el gasto.
+
+\[ Q = \left( AC_d \right) _{ eff } \sqrt{ \frac{ 2 \Delta P }{ \rho _a } } = 0.460 \sqrt{ \frac{ 2 \cdot 0.430 }{ 1.033 } } \]
+
+\[ \boxed{ Q = 0.420 \left[ \sfrac{ m^3 }{ s } \right] } \]
+
+Para trabajar con arreglos de ventanas más complejos, podemos hacer superposición de las presiones:
+
+\section{}
+
+Se tiene un edificio a nivel del mar con una ventana de $ 1 \left[ m^2 \right] $ a $ 1 \left[ m \right] $ de altura sobre el piso y otra ventana de la mitad de tamaño a $ 5 \left[ m \right] $. En el exterior se tiene una temperatura de $ 25 \left[ \degree C \right] $ y una humedad relativa de $ 50\% $, mientras que en el interior se tiene $ 35 \left[ \degree C \right] $ y $ R_h = 30\% $. Calcula el gasto de aire y la altura del eje neutro.
+
+
+Las características del aire son:
+
+\begin{itemize}
+    \item
+    $ \rho _{ ext } = 1.166 \left[ \sfrac{ kg }{ m } \right] $
+
+    \item
+    $ \rho _{ int } = 1.126 \left[ \sfrac{ kg }{ m } \right] $
+
+\end{itemize}
+
+La diferencia de presión por efecto chimenea será:
+
+\[ \Delta P_c = \Delta P_e + \Delta P_s = \left( \rho _{ ext } - \rho _{ int } \right) g \Delta z \]
+
+\[ \Delta P_c = \left( 1.166 - 1.126 \right) 9.81 \cdot 4 = 1.57 \left[ Pa \right] \]
+
+Como no hay más información acerca de las ventanas, tomamos:
+
+\[ C_{ d \, 1 } = C_{ d \, 2 } = 0.65 \]
+
+\[ \left( AC_d \right) _{ eff } = \frac{ 1 }{ \sqrt{ \sum{ \frac{ 1 }{ \left(  A_i C_{ d \, i } \right) ^2 } } } } = \frac{ 1 }{ \sqrt{ \frac{ 1 }{ \left( 1 \cdot 0.65 \right) ^2 } + \frac{ 1 }{ \left( 0.5 \cdot 0.65 \right) ^2 } } } \]
+
+\[ \left( AC_d \right) _{ eff } = 0.291 \left[ m^2 \right] \]
+
+Calculamos el gasto.
+
+\[ Q = \left( AC_d \right) _{ eff } \sqrt{ \frac{ 2 \Delta P }{ \rho _a } } = 0.291 \sqrt{ \frac{ 2 \cdot 1.570 }{ 1.166 } } \]
+
+\[ Q = 0.478 \left[ \sfrac{ m^3 }{ s } \right] \]
+
+Ahora, establecemos las ecuaciones de variación de presión respecto a la altura:
+
+\[ P_{ int } = - \rho _{ int } g h = -11.04 h \]
+
+\[ P_{ ext } = \Delta P_e - \rho_{ ext } g h = \Delta P_e - 11.45 h \]
+
+Como solo hay una ventana de salida y una de entrada, $ Q = Q_e = Q_s $.
+
+\[ \Delta P_e = \frac{ \rho _{ ext } Q_e^2 }{ 2 A_e^2 C_d^2 } = \frac{ 1.126 \cdot 0.478^2 }{ 2 \cdot 1^2 \cdot 0.65^2} = 0.343 \left[ Pa \right] \]
+
+\[ P_{ ext } = 0.343 - 11.45 h \]
+
+Por último, despejamos la altura del eje neutro:
+
+\[ P_{ int } \left( h_n \right) - P_{ ext } \left( h_n \right) = 0 \]
+
+\[ -11.04 h_n - \left( 0.343 -11.45 h_n \right) = 0 \]
+
+\[ 0.41 h_n - 0.343 = 0 \]
+
+\[ \boxed{ h_n 0.84 \left[ m \right] } \]
+
+Esta altura se mide sobre el eje de la ventana inferior.
+
+%nocite{*}
+%\printbibliography
+
+\end{document}
