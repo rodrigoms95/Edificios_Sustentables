@@ -1,0 +1,161 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,width=160mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{gensymb}
+\usepackage{upgreek}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{hyperref}
+%\usepackage[
+%    backend=biber,
+%    style=apa,
+%  ]{biblatex}
+\usepackage{csquotes}
+%\addbibresource{bibresource}
+
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Edificios Sustentables}
+\chead{Transferencia de calor}
+\rhead{Rodrigo Muñoz Sánchez}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\renewcommand{\theenumiii}{\roman{enumiii}}
+
+\title{Ejercicios de transferencia de calor}
+\author{Rodrigo Muñoz}
+\date{Enero 2022}
+
+\graphicspath{Images/}
+
+\begin{document}
+
+\maketitle
+
+Tenemos un foco esférico con un radio de $ 5 \left[ cm \right] $ que tiene una intensidad de $ 100 \left[ cd \right] $. La fuente de luz, ya sea el LED o la resistencia, es lo suficientemente pequeña y entonces podemos considerarla como una fuente puntual en el centro de la pantalla, que será el vidrio del foco. El flujo total del foco será:
+
+\[ \Phi _{ tot } = \Omega I = 4 \pi \cdot 100 = 1, 256 \left[ lm \right] \]
+
+Si tomamos solamente un cono con un ángulo sólido de $ 1 \left[ sr \right] $, a $ 1 \left[ m \right] $ de distancia:
+
+\[ d = 1 \left[ m \right] \]
+
+\[ A = \Omega d = 1 \left[ m^2 \right] \]
+
+Donde hay que tener en cuenta que el área no es plana, sino una curva, ya que es el sector de una esfera.
+
+\[ \Phi = \Omega I = 100 \left[ lm \right] \]
+
+La iluminación será igual a:
+
+\[ E = \frac{ \Phi }{ A } = 100 \left[ lx \right] \]
+
+El flujo luminoso, $ \Phi \left[ lm \right] $, es el valor que suele ser dado por los fabricantes, mientras que la cantidad de iluminación, $ E \left[ lx \right] $, es el valor que se suele utilizar para el diseño de iluminación.
+
+Por el contrario, si consideramos una distancia de $ 2 \left[ m \right] $, manteniendo constante el ángulo sólido de $ 1 \left[ sr \right] $:
+
+\[ d = 2 \left[ m \right] \]
+
+\[ A = \Omega d = 4 \left[ m^2 \right] \]
+
+\[ \Phi = \Omega I = 100 \left[ lm \right] \]
+
+Podemos ver que el flujo se mantiene constante, pese a que la distancia ha variado, ya que éste solo depende del ángulo sólido y de la intensidad.
+
+La iluminación será igual a:
+
+\[ E = \frac{ \Phi }{ A } = 1 \cdot 4 \] 
+
+\[ E = 25 \left[ lx \right] \]
+
+Por el contrario, la iluminación sí ha cambiado, ya que depende directamente del área. Entonces, podemos ver que el flujo no cambia con respecto a la distancia, pero que la iluminación sí.
+
+Ahora vamos a calcular la luminancia. Existen dos formas de luminancia: cuando se da por transmisión y cuando se da por reflexión. Primero evaluaremos la luminancia transmitida por la pantalla del foco.
+
+La fórmula de la luminancia es:
+
+\[ L = \frac{ I }{ A } \tau \cos \theta \]
+
+donde $ \tau \approx 1 $, ya que tanto en un vidrio totalmente transparente como en los vidrios difusos que se suelen utilizar en focos se transmite práctiamente la totalidad de la luz. En una esfera, como la pantalla de nuestro foco, los rayos que provienen del centro inciden con un ángulo de $ 0 \degree $, con respecto a la normal de la superficie, por lo que $ \theta = 0 \degree $ y $ \cos \theta = 1 $. 
+
+En cuanto al área, es necesario considerar la particularidad de la luminancia, es decir, que debemos trabajar con área proyectadas. La luminancia es la medida objetiva del brillo que perciben nuestros ojos, y en realidad cada ojo solo puede percibir imágenes en dos dimensiones. Cuando vemos un balón de futbol, nuestros ojos solo perciben un círculo, y es nuestro cerebro quien se encarga de comprender que ese círculo tiene volumen y en realidad es una esfera. Lo mismo sucede con las fuentes de luz, y por eso, si volteamos a ver a nuestro foco, percibiremos únicamente el brillo del círculo plano que forma la proyección de la pantalla esférica. Por tanto, el área será igual a:
+
+\[ A = 4 \pi r^2 \]
+
+Y entonces la luminancia será:
+
+\[ L = \frac{ 100 }{ 5^2 \pi } \]
+
+\[ L = 12, 732 \left[ \sfrac{ cd }{ m^2 } \right] \]
+
+Como la luminancia representa la medida objetiva del brillo percibido, el valor que hemos obtenido nos representa que el foco será un punto demasiado birllante, y que generará fuertes destellos cuando entre en el campo visual de las personas que estén en la habitación. Una forma de hacer más agradable la luz que proviene del foco es el utilizar una luminaria difusa que aumente el diámetro de la pantalla. Imaginemos que utilizamos una luminaria esférica, como las luminarias chinas de papel, que hace que ahora la fuente de luz tenga una pantalla de $ 15 \left[cm \right] $ de radio. Repitiendo el cálculo realizado con anterioridad llegamos a que:
+
+\[ L = 1, 415 \left[ \sfrac{ cd }{ m^2 } \right] \]
+
+lo que nos indica que el riesgo de destellos ahora será mucho menor, debido a que la luminancia de nuestra fuente de luz es mucho menos intensa.
+
+Ahora vamos a evaluar la luminancia reflejada. Debajo del foco hay una mesa que se ubica a $ 2 \left[ m \right] $ de distancia vertical del foco. En este caso vamos a considerar que la intensidad se mantiene igual, pero que el foco solamente emite en un cono de $ 1 \left[ sr \right] $.
+
+La superficie de iluminación constante para nuestro foco sera una superficie curva, pero como debemos trabajar con superficies planas para la luminancia, ser necesario proyectarlo a una superficie plana. Si imaginamos el cono formado por un sector de $ 1 \left[ sr \right] $ podremos notar que tiene una base curva, que corresponde al sector de la esfera que hemos recortado y a la superficie de iluminación constante. El área de este sector puede calcularse fácimente con la relación entre área y ángulo sólido. Si cortamos esta sección curva para que la base del cono sea plana tendremos entonces el área proyectada, la cual requiere más pasos para su cálculo.
+
+Si consideramos el perfil plano de nuestro cono, podemos ver que el ángulo sólido $ \Omega $ corresponde a un ángulo plano $ \theta $, que la superficie curva del sector esférico corresponde a un arco de circunferencia y que la superficie plana a la base del triángulo isóceles formada por la secante del arco de curva. La mitad de la longitud de esa secante, $ a $, corresponde al radio de la superficie proyectada plana que buscamos, por lo que podemos utilizar relaciones trigonométricas para encontrar el valor de $ a $.
+
+Primero tenemos la fórmula para obtener el área proyectada circular:
+
+\[ A_p = \pi a^2 \]
+
+Podemos encontrar la relación entre $ h $ y $ a $ utilizando el teorema de Pitágoras:
+
+
+\begin{equation} \label{eq:1}
+    a^2 = 2 r h - h^2 
+\end{equation}
+
+Ahora necesitamos obtener una relación entre $ h $ y $ r $. Cuando $ \Omega = 1 \left[ sr \right] $:
+
+\[ \frac{ h }{ r } = \frac{ 1 }{ 2 \pi } \]
+
+Es muy importante notar que esta relación solo se mantiene si$ \Omega = 1 \left[ sr \right] $. En caso de tener un ángulo sólido diferente, es necesario encontrar la relación entre $ r $ y $ h $ utilizando la fórmula que relaciona $ \Omega $ con $ \theta $.
+
+Ahora, sustituimos $ h $ en la ecuación \ref{eq:1}, y posteriormente $ a $ en la misma ecuación para tener una ecuación que relacione $ r $ y $ A_p $:
+
+\[ a^2 = \frac{ 2 r^2 }{ 2 \pi } - \frac{ r^2 }{ 4 \pi ^2 } = \frac{ r^2 }{\pi } \left( 1 - \frac{ 1 }{ 4 \pi } \right) \]
+
+\[ A_p = \frac{ \pi }{ \pi } r^2 \left( 1 - \frac{ 1 }{ 4 \pi } \right) \]
+
+\[ \boxed{ A_p = r^2 \left( 1 - \frac{ 1 }{ 4 \pi } \right) \approx 0.92 r^2 } \]
+
+En este momento podemos ver la importancia de calcular el área proyecta para obtener la luminancia, y la magnitud de error que se puede generar en caso de no hacerlo. Con $ r = 2 \left[ m \right] $:
+
+\[ A_{ proyectada } = A_p = 3.68 \left[ m^2 \right] \]
+
+\[ A_{ curva} = A_c = 4 \left[ m^2 \right] \]
+
+Podemos notar también que siempre tendremos que $ A_p < A_c $, por lo que error de no proyectar el área siempre consistirá en subestimar la luminancia.
+
+Para calcular la luminancia, vamos a considerar que la mesa tiene una reflectancia de $ 0.5 $ y que el foco se encuentra directamente sobre la mesa, por lo que $ \theta = 0 \degree $.
+
+\[ L = \frac{ \rho I }{ A_p } = \frac{ 0.5 \cdot 100 }{ 3.68 } \]
+
+\[ L = 13.58 \left[ \sfrac{ cd }{ m^2 } \right] \]
+
+Otra opción es hacer el calculo de la luminancia con la fórmula de aproximación:
+
+\[ L = \frac{ E }{ \Omega } \rho \cos \theta \]
+
+\[  L = 12.5 \left[ \sfrac{ cd }{ m^2 } \right] \]
+
+Que en este caso nos genera un error de $ 7.95\% $. Esta aproximación solo genera un error aceptable si $ \Omega < 1 \left[ sr \right] $
+
+La luminancia es la medida del brillo de la superficie, que incide directamente en el rendimiento visual de la actividad. Sin embargo, como hemos visto, el cálculo de la iluminación es más sencillo y por tanto se suele usar esta última en el diseño de iluminación, aunque para que eso sea viable, las superficies del cuarto deben deben reflectancias adecuadas.
+
+%\nocite{*}
+%\printbibliography
+
+\end{document}
